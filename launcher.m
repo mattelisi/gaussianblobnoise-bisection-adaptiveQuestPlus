@@ -11,8 +11,8 @@ addpath('functions/');
 home;
 
 %% general parameters
-const.TEST        = 2;      % 1 = test in dummy mode, 0 = test in eyelink mode; 2 = test without eyetracking
-const.gammaLinear = 0;      % use monitor linearization
+const.TEST        = 0;      % 1 = test in dummy mode, 0 = test in eyelink mode; 2 = test without eyetracking
+const.gammaLinear = 1;      % use monitor linearization
 const.saveMovie   = 0;
 const.nTrialMovie = 5;
 
@@ -158,7 +158,7 @@ for sess = 1:str2double(nsess)
     reddUp;
     
     % save updated design information
-    save(sprintf('%s.mat',vpcode),'design','visual','scr','const', 'sweet');
+    save(sprintf('%s.mat',vpcode),'design','visual','scr','const', 'qp');
     
     % sposto i risultati nella cartella corrispondente
     movefile(datFile,resdir);

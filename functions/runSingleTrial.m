@@ -20,41 +20,6 @@ else
     HideCursor;
 end
 
-% % predefine boundary information
-% cxm = round(td.fixLoc(1));
-% cym = round(td.fixLoc(2));
-% chk = visual.fixCkRad;
-% 
-% % draw trial information on EyeLink operator screen
-% Eyelink('command','draw_cross %d %d', cxm, cym);
-% 
-% % coord
-% far_loc = [cxm + td.side * visual.ppd * (td.ecc + td.dE/2), cym]; 
-% near_loc = [cxm - td.side * visual.ppd * (td.ecc  - td.dE/2), cym];
-% 
-% % generate noise background for this trial
-% bgmat = visual.bgColor + td.bg_sigma*randn(scr.yres, scr.xres);
-% bgtexture = Screen('MakeTexture', scr.main, uint8(bgmat)); 
-% 
-% % target texture
-% [x, y] = meshgrid(1:scr.xres, 1:scr.yres);
-% absoluteDifference = abs(visual.white - visual.bgColor);
-% 
-% % with this you can have the constant energy one
-% if td.FE
-%     imageMat_far =  1/(2*pi*td.sigma^2) *  exp(-(((x-far_loc(1)) .^ 2) + ((y-far_loc(2)) .^ 2)) / (2*td.sigma ^ 2));
-%     imageMat_near =  1/(2*pi*td.sigma^2) *  exp(-(((x-near_loc(1)) .^ 2) + ((y-near_loc(2)) .^ 2)) / (2*td.sigma ^ 2));
-% 
-% else
-%     % this keep the peak constant and vary only the sigma
-%     imageMat_far =  exp(-(((x-far_loc(1)) .^ 2) + ((y-far_loc(2)) .^ 2)) / (2*td.sigma ^ 2));
-%     imageMat_near = exp(-(((x-near_loc(1)) .^ 2) + ((y-near_loc(2)) .^ 2)) / (2*td.sigma ^ 2));
-% end
-%     
-% targetImageMatrix = bgmat + td.contrast*absoluteDifference*(imageMat_far + imageMat_near);
-% targettexture = Screen('MakeTexture', scr.main, uint8(targetImageMatrix));
-
-
 %% varying pix size
 % predefine boundary information
 cxm = round(td.fixLoc(1));
@@ -65,12 +30,8 @@ chk = visual.fixCkRad;
 Eyelink('command','draw_cross %d %d', cxm, cym);
 
 % coord
-%far_loc = [cxm + td.side * visual.ppd * (td.ecc + td.dE/2), cym] / design.pixSixe; 
-%near_loc = [cxm - td.side * visual.ppd * (td.ecc  - td.dE/2), cym] / design.pixSixe;
-
 far_loc = [cxm + sign(td.dE) * visual.ppd * (td.ecc + abs(td.dE)/2), cym] / design.pixSixe; 
 near_loc = [cxm - sign(td.dE) * visual.ppd * (td.ecc  - abs(td.dE)/2), cym] / design.pixSixe;
-
 
 % generate noise background for this trial
 bgmat = visual.bgColor + td.bg_sigma*randn(scr.yres/design.pixSixe, scr.xres/design.pixSixe);
@@ -101,6 +62,8 @@ targettexture = Screen('MakeTexture', scr.main, uint8(repelem(targetImageMatrix,
 
 
 %%
+% preallocate
+rr = NaN;
 
 % predefine time stamps
 tOn    = NaN;

@@ -38,10 +38,6 @@ if ~const.TEST
     end
 end
 
-% set a counter for trials across bloc
-ot = 0; 
-latencies = [];
-
 for b = 1:design.nBlocks
     
     % block = design.blockOrder(b); 
@@ -213,7 +209,6 @@ for b = 1:design.nBlocks
             
             % update parameter posterior probability density
             eval(['qp.',td.acode,'.tab.p = p_m_uncond(nextS, qp.',td.acode,'.tab, rr);']);
-            eval(['qp.',td.acode,'.x']);
             % ------------------------------------------------------------------------------------------------------
         
         end

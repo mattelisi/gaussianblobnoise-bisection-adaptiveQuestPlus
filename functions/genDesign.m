@@ -54,7 +54,7 @@ design.iti = 0.3;
 design.preRelease = scr.fd/2;
 
 %% exp structure
-design.nBlocks = 8;
+design.nBlocks = 12;
 design.totSession = 1;
 
 %% other
@@ -65,8 +65,8 @@ design.fixJtStd = 0.2;
 % design.sigmas = design.sigmas(2:end);
 design.sigmas_deg = linspace(design.sigmas_deg(1),design.sigmas_deg(end),3);
 design.sigmas = linspace(design.sigmas(1),design.sigmas(end),3);
-design.sigmas_deg = design.sigmas_deg(1);
-design.sigmas = design.sigmas(1);
+% design.sigmas_deg = design.sigmas_deg(1);
+% design.sigmas = design.sigmas(1);
 
 %% prepare staircases
 design.rep = 100;
@@ -117,6 +117,7 @@ for e = design.eccentricity
     % trial(t).sigma = design.sigma_range(1) + rand(1) * (design.sigma_range(2) - design.sigma_range(1));
     
     trial(t).dE = NaN;
+    trial(t).side = NaN;
     
     trial(t).fixLoc = [scr.centerX scr.centerY] + round(randn(1,2)*design.fixJtStd*visual.ppd);
     trial(t).soa = (design.soa(1) + rand*design.soa(2))/1000;
