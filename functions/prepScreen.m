@@ -16,7 +16,6 @@ scr.expScreen  = max(scr.allScreens);
 
 % get rid of PsychtoolBox Welcome screen
 Screen('Preference', 'SkipSyncTests', 0)
-%Screen('Preference', 'SkipSyncTests', 1);
 
 % set resolution?
 %Screen('Resolution', scr.expScreen, 1600, 900);
