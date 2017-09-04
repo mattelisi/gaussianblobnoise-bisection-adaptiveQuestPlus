@@ -1,4 +1,4 @@
-function [design, qp] = genDesign(visual,scr)
+function [design, qp] = genDesign(visual,scr, sess, vpcode)
 %
 % location uncertainty v1.1 - gaussian blobs
 %
@@ -88,6 +88,11 @@ for c = 1:length(design.sigmas)
     eval(['qp.s',num2str(c),'.x_n = design.stim_n;']);
     eval(['qp.s',num2str(c),'.x_values = linspace(design.r_dE(1),design.r_dE(2),design.stim_n);']);
     eval(['qp.s',num2str(c),'.x_EH = NaN(1,design.stim_n);']);
+    
+    % if not the first session, load posterior probability from previous one
+    if sess > 1
+        eval(['qp.s',num2str(c),'.tab.p = readPtab(vpcode, c);']);
+    end
 end
 end
 
