@@ -15,7 +15,7 @@ end
 % select stimulus with minimum entropy
 x_next = qp.x_values(qp.x_EH==min(qp.x_EH));
 
-% due to quantizations sometimes more than one have the same entropy
+% due to quantizations sometimes more than one may have the same entropy
 % pick a random one
 if length(x_next)>1
     x_next = x_next(randperm(length(x_next),1));
