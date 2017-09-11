@@ -41,7 +41,7 @@ el=EyelinkInitDefaults(scr.main);
 Eyelink('command', 'add_file_preamble_text ''location uncertainty v1.0 by Matteo Lisi''');
 
 %  SET UP TRACKER CONFIGURATION
-Eyelink('command', 'calibration_type = HV9');
+Eyelink('command', 'calibration_type = HV5');
 Eyelink('command', 'link_event_filter = LEFT,RIGHT,BUTTON');
 Eyelink('command', 'link_sample_data  = LEFT,RIGHT,GAZE,AREA');
 Eyelink('command', 'heuristic_filter = 1 1');
